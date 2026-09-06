@@ -89,8 +89,8 @@ async function main() {
       contact_email: "hello@inbetweenworkshops.in",
       address_line: "Indiranagar, Bangalore",
       whatsapp_number: "",
-      instagram_handle: "inbetweenworkshops",
-      instagram_url: "https://instagram.com/inbetweenworkshops",
+      instagram_handle: "inbetween_workshops",
+      instagram_url: "https://www.instagram.com/inbetween_workshops",
       primary_booking_method: "instagram",
     })
     .eq("id", 1);
@@ -254,7 +254,7 @@ async function main() {
     (["ig1", "ig2", "ig3", "ig4", "ig5", "ig6"] as ImageKey[]).map(
       (key, i) => ({
         image_url: urls[key],
-        link: "https://instagram.com/inbetweenworkshops",
+        link: "https://www.instagram.com/inbetween_workshops",
         sort_order: i,
       }),
     ),

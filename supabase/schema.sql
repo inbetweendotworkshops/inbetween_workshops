@@ -11,8 +11,8 @@ create table if not exists site_settings (
   contact_email text not null default 'hello@inbetweenworkshops.in',
   address_line text not null default 'Indiranagar, Bangalore',
   whatsapp_number text not null default '',
-  instagram_handle text not null default 'inbetweenworkshops',
-  instagram_url text not null default 'https://instagram.com/inbetweenworkshops',
+  instagram_handle text not null default 'inbetween_workshops',
+  instagram_url text not null default 'https://www.instagram.com/inbetween_workshops',
   primary_booking_method text not null default 'instagram' check (primary_booking_method in ('whatsapp', 'instagram'))
 );
 
