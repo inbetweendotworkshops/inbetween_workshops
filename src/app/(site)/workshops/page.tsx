@@ -9,12 +9,18 @@ export default async function WorkshopsPage() {
   ]);
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-12 px-6 py-16">
-      <div className="flex flex-col gap-3">
-        <h1 className="font-heading text-4xl font-medium tracking-tight">
+    <div className="mx-auto flex max-w-5xl flex-col gap-14 px-6 py-16 sm:py-20">
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-secondary" aria-hidden="true" />
+          <p className="text-xs font-medium tracking-[0.2em] text-secondary uppercase">
+            Workshops
+          </p>
+        </div>
+        <h1 className="font-heading text-4xl font-medium tracking-tight sm:text-5xl">
           Everything we run
         </h1>
-        <p className="max-w-xl text-muted-foreground">
+        <p className="max-w-xl font-serif text-lg text-foreground/75 italic">
           Each workshop is a single sitting of two to three hours. Materials
           included, nothing to bring but yourself.
         </p>
@@ -26,7 +32,7 @@ export default async function WorkshopsPage() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 rounded-2xl border border-border/70 p-6">
+      <div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card p-6">
         <p className="text-sm text-muted-foreground">
           Private groups of 8+ available anywhere in Bangalore.
         </p>

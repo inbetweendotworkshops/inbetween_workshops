@@ -28,11 +28,12 @@ export function ScheduleItem({
     <div
       className={cn(
         "flex flex-col gap-6 rounded-2xl border border-border/70 p-6 sm:flex-row",
-        featured && "bg-card",
+        featured &&
+          "bg-card shadow-[0_20px_50px_-30px_oklch(0.33_0.06_152_/_0.5)]",
       )}
     >
       {event.image_url ? (
-        <div className="aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted sm:w-56 sm:shrink-0">
+        <div className="aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted ring-1 ring-border/70 sm:w-56 sm:shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={event.image_url}
@@ -43,7 +44,9 @@ export function ScheduleItem({
       ) : null}
       <div className="flex flex-1 flex-col gap-3">
         <div className="flex flex-wrap items-center gap-3">
-          <h3 className="font-heading text-lg font-medium">{event.workshop_title}</h3>
+          <h3 className="font-heading text-lg font-medium">
+            {event.workshop_title}
+          </h3>
           <Badge className={cn("rounded-full", statusClass[event.status])}>
             {statusLabel[event.status]}
           </Badge>
@@ -53,9 +56,11 @@ export function ScheduleItem({
         </p>
         <p className="text-sm text-muted-foreground">{event.location}</p>
         {event.description ? (
-          <p className="text-sm text-muted-foreground">{event.description}</p>
+          <p className="font-serif text-base text-foreground/75 italic">
+            {event.description}
+          </p>
         ) : null}
-        <p className="text-sm">
+        <p className="text-sm font-medium">
           {event.price_label} · {event.seats_total} seats
         </p>
         <div className="mt-2">

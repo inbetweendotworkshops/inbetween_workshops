@@ -18,13 +18,13 @@ export function InstagramGrid({
             href={item.link || settings.instagram_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="aspect-square overflow-hidden rounded-xl bg-muted"
+            className="group aspect-square overflow-hidden rounded-xl bg-muted ring-1 ring-border/70"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={item.image_url}
               alt=""
-              className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
           </a>
         ))}
@@ -33,7 +33,7 @@ export function InstagramGrid({
         href={settings.instagram_url}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-4 inline-block text-sm text-muted-foreground transition-colors hover:text-foreground"
+        className="mt-4 inline-block font-serif text-sm text-muted-foreground italic transition-colors hover:text-foreground"
       >
         @{settings.instagram_handle} →
       </a>
