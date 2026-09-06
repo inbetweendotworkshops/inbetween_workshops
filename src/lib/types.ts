@@ -54,6 +54,7 @@ export interface ScheduleEvent {
 
 export interface Story {
   id: string;
+  slug: string;
   title: string;
   published_date: string;
   excerpt: string;

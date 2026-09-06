@@ -217,6 +217,7 @@ async function main() {
   await supabase.from("stories").delete().neq("id", "00000000-0000-0000-0000-000000000000");
   await supabase.from("stories").insert([
     {
+      slug: "why-we-started",
       title: "Why we started Inbetween",
       published_date: "12 August 2026",
       excerpt:
@@ -226,6 +227,7 @@ async function main() {
       sort_order: 0,
     },
     {
+      slug: "notes-from-the-embroidery-table",
       title: "Notes from the embroidery table",
       published_date: "28 July 2026",
       excerpt:
@@ -235,6 +237,7 @@ async function main() {
       sort_order: 1,
     },
     {
+      slug: "how-to-host-a-craft-evening",
       title: "How to host a craft evening at home",
       published_date: "9 July 2026",
       excerpt:

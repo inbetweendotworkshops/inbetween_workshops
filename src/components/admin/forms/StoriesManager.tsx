@@ -15,9 +15,11 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import { ImageUrlField } from "@/components/admin/ImageUrlField";
+import { slugify } from "@/lib/slug";
 import type { Story } from "@/lib/types";
 
 const EMPTY: Omit<Story, "id"> = {
+  slug: "",
   title: "",
   published_date: "",
   excerpt: "",
@@ -31,21 +33,36 @@ export function StoriesManager({ initial }: { initial: Story[] }) {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Story | null>(null);
   const [draft, setDraft] = useState<Omit<Story, "id">>(EMPTY);
+  const [slugEdited, setSlugEdited] = useState(false);
   const [saving, setSaving] = useState(false);
 
   function openNew() {
     setEditing(null);
+    setSlugEdited(false);
     setDraft({ ...EMPTY, sort_order: items.length });
     setOpen(true);
   }
 
   function openEdit(story: Story) {
     setEditing(story);
+    setSlugEdited(true);
     setDraft(story);
     setOpen(true);
   }
 
+  function handleTitleChange(title: string) {
+    setDraft((d) => ({
+      ...d,
+      title,
+      slug: !editing && !slugEdited ? slugify(title) : d.slug,
+    }));
+  }
+
   async function handleSave() {
+    if (!draft.slug.trim()) {
+      toast.error("This story needs a URL slug");
+      return;
+    }
     setSaving(true);
     const res = await fetch(
       editing ? `/api/admin/stories/${editing.id}` : "/api/admin/stories",
@@ -195,9 +212,20 @@ export function StoriesManager({ initial }: { initial: Story[] }) {
               <Input
                 id="st-title"
                 value={draft.title}
-                onChange={(e) =>
-                  setDraft((d) => ({ ...d, title: e.target.value }))
-                }
+                onChange={(e) => handleTitleChange(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="st-slug">
+                URL slug (page will be at /stories/{draft.slug || "…"})
+              </Label>
+              <Input
+                id="st-slug"
+                value={draft.slug}
+                onChange={(e) => {
+                  setSlugEdited(true);
+                  setDraft((d) => ({ ...d, slug: slugify(e.target.value) }));
+                }}
               />
             </div>
             <div className="flex flex-col gap-2">

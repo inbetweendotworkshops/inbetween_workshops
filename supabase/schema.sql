@@ -61,6 +61,7 @@ create table if not exists schedule_events (
 -- ---------- stories ----------
 create table if not exists stories (
   id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
   title text not null,
   published_date text not null,
   excerpt text not null,

@@ -116,6 +116,16 @@ export async function getStories(): Promise<Story[]> {
   return data ?? [];
 }
 
+export async function getStoryBySlug(slug: string): Promise<Story | null> {
+  const supabase = createServerClient();
+  const { data } = await supabase
+    .from("stories")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+  return data ?? null;
+}
+
 export async function getInstagramGallery(): Promise<InstagramGalleryItem[]> {
   const supabase = createServerClient();
   const { data } = await supabase
