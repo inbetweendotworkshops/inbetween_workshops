@@ -18,9 +18,12 @@ const FALLBACK_SETTINGS: SiteSettings = {
   contact_email: "hello@inbetweenworkshops.in",
   address_line: "Indiranagar, Bangalore",
   whatsapp_number: "",
-  instagram_handle: "inbetweenworkshops",
-  instagram_url: "https://instagram.com/inbetweenworkshops",
+  instagram_handle: "inbetween_workshops",
+  instagram_url: "https://www.instagram.com/inbetween_workshops",
   primary_booking_method: "instagram",
+  schedule_enabled: true,
+  schedule_empty_message:
+    "No events scheduled, we'll be coming back with a banger event.",
 };
 
 const FALLBACK_HERO: HeroSection = {

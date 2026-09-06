@@ -7,8 +7,12 @@ export default async function SchedulePage() {
     getSiteSettings(),
   ]);
 
-  const featured = events.find((event) => event.is_featured) ?? events[0];
-  const rest = events.filter((event) => event.id !== featured?.id);
+  const featured = settings.schedule_enabled
+    ? (events.find((event) => event.is_featured) ?? events[0])
+    : undefined;
+  const rest = settings.schedule_enabled
+    ? events.filter((event) => event.id !== featured?.id)
+    : [];
 
   return (
     <div className="mx-auto flex max-w-4xl flex-col gap-12 px-6 py-16">
@@ -28,9 +32,7 @@ export default async function SchedulePage() {
           <ScheduleItem event={featured} settings={settings} featured />
         </section>
       ) : (
-        <p className="text-muted-foreground">
-          No sessions scheduled right now — check back soon.
-        </p>
+        <p className="text-muted-foreground">{settings.schedule_empty_message}</p>
       )}
 
       {rest.length > 0 ? (

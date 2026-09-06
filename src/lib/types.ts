@@ -11,6 +11,8 @@ export interface SiteSettings {
   instagram_handle: string;
   instagram_url: string;
   primary_booking_method: BookingMethod;
+  schedule_enabled: boolean;
+  schedule_empty_message: string;
 }
 
 export interface HeroSection {

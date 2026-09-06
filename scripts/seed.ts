@@ -9,11 +9,12 @@
  */
 import { createClient } from "@supabase/supabase-js";
 import { config } from "dotenv";
+import { CONTENT_IMAGES_BUCKET, ensureContentImagesBucket } from "../src/lib/storage";
 
 config({ path: ".env.local" });
 
 const SOURCE = "https://inbetween-crafts-hub.lovable.app";
-const BUCKET = "content-images";
+const BUCKET = CONTENT_IMAGES_BUCKET;
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -41,17 +42,6 @@ const SOURCE_IMAGES = {
 
 type ImageKey = keyof typeof SOURCE_IMAGES;
 
-async function ensureBucket() {
-  const { data: buckets } = await supabase.storage.listBuckets();
-  if (!buckets?.some((b) => b.name === BUCKET)) {
-    const { error } = await supabase.storage.createBucket(BUCKET, {
-      public: true,
-    });
-    if (error) throw error;
-    console.log(`Created storage bucket "${BUCKET}"`);
-  }
-}
-
 async function rehostImage(key: ImageKey): Promise<string> {
   const path = SOURCE_IMAGES[key];
   const res = await fetch(`${SOURCE}${path}`);
@@ -70,7 +60,7 @@ async function rehostImage(key: ImageKey): Promise<string> {
 
 async function main() {
   console.log("Ensuring storage bucket exists...");
-  await ensureBucket();
+  await ensureContentImagesBucket(supabase);
 
   console.log("Downloading and re-hosting images...");
   const urls: Record<ImageKey, string> = {} as Record<ImageKey, string>;
@@ -92,6 +82,9 @@ async function main() {
       instagram_handle: "inbetween_workshops",
       instagram_url: "https://www.instagram.com/inbetween_workshops",
       primary_booking_method: "instagram",
+      schedule_enabled: true,
+      schedule_empty_message:
+        "No events scheduled, we'll be coming back with a banger event.",
     })
     .eq("id", 1);
 

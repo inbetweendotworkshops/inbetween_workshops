@@ -13,7 +13,9 @@ create table if not exists site_settings (
   whatsapp_number text not null default '',
   instagram_handle text not null default 'inbetween_workshops',
   instagram_url text not null default 'https://www.instagram.com/inbetween_workshops',
-  primary_booking_method text not null default 'instagram' check (primary_booking_method in ('whatsapp', 'instagram'))
+  primary_booking_method text not null default 'instagram' check (primary_booking_method in ('whatsapp', 'instagram')),
+  schedule_enabled boolean not null default true,
+  schedule_empty_message text not null default 'No events scheduled, we''ll be coming back with a banger event.'
 );
 
 -- ---------- hero_section (singleton) ----------
