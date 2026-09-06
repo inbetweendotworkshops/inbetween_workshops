@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/server";
 import type {
   AboutPage,
   HeroSection,
+  InstagramGalleryItem,
   ScheduleEvent,
   SiteSettings,
   Story,
@@ -70,6 +71,18 @@ export async function adminGetStories(): Promise<Story[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("stories")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+export async function adminGetInstagramGallery(): Promise<
+  InstagramGalleryItem[]
+> {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("instagram_gallery")
     .select("*")
     .order("sort_order", { ascending: true });
   if (error) throw new Error(error.message);

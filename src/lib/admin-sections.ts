@@ -55,6 +55,15 @@ export const ADMIN_SECTIONS: AdminSection[] = [
       "Your founding story, one photo, and the three pillars you stand for.",
   },
   {
+    key: "instagram",
+    editorHref: "/admin/instagram",
+    editorLabel: "Instagram grid",
+    livePage: "Home Page",
+    liveHref: "/",
+    description:
+      "The 6-photo \"On Instagram\" grid on the homepage. Add a photo URL and the post link for each tile.",
+  },
+  {
     key: "settings",
     editorHref: "/admin/settings",
     editorLabel: "Nav, footer & booking",

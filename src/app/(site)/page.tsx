@@ -101,7 +101,7 @@ export default async function HomePage() {
       {gallery.length > 0 ? (
         <section className="flex flex-col gap-8">
           <h2 className="font-heading text-2xl font-medium">On Instagram</h2>
-          <InstagramGrid items={gallery} settings={settings} />
+          <InstagramGrid items={gallery.slice(0, 6)} settings={settings} />
         </section>
       ) : null}
     </div>
